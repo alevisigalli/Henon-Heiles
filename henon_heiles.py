@@ -1,3 +1,26 @@
+"""
+Henon-Heiles System Integration
+
+This script performs numerical integration of the Henon-Heiles system using various integration methods
+and visualizes the trajectory.
+
+Usage:
+  henon_heiles.py (--rk2 | --rk4 | --leapfrog | --euler) (--outer | --torus | --hyperbolic)
+
+Options:
+  -h, --help    Show this help message and exit.
+  --rk2         Integrate equations of motion using Runge-Kutta 2.
+  --rk4         Integrate equations of motion using Runge-Kutta 4.
+  --leapfrog    Integrate equations of motion using LeapFrog.
+  --euler       Integrate equations of motion using Euler.
+  --outer       Simulation of trajectory: outside separatrix.
+  --torus       Simulation of trajectory: distorted torus.
+  --hyperbolic  Simulation of trajectory: hyperbolic points (separatrices).
+
+Examples:
+  python henon_heiles.py --rk4 --torus
+"""
+
 import argparse
 import sys
 import numpy as np
