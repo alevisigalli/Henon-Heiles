@@ -1,42 +1,87 @@
 import numpy as np
 
-def runge_kutta2(f, t, y, h):
+def runge_kutta2(f, t, y, dt):
+    """
+    Runge-Kutta 2nd order integration method for solving first-order ODEs.
+
+    Parameters:
+        f  (function): The function that defines the ODE dy/dt = f(t, y).
+        t  (float): Current time.
+        y  (array-like): Current state vector.
+        dt (float): Step size.
+
+    Returns:
+        array-like: New state vector after one time step.
+    """
+
     # Implement the Runge-Kutta integration method
     k1 = np.array(f(t,y))
-    k2 = np.array(f(t+h,y+h*k1))
+    k2 = np.array(f(t+dt,y+dt*k1))
 
     # Return the results
-    return y + 0.5 * h * (k1+k2)
+    return y + 0.5 * dt * (k1+k2)
 
-def runge_kutta4(f, t, y, h):
+def runge_kutta4(f, t, y, dt):
+    """
+    Runge-Kutta 4th order integration method for solving first-order ODEs.
+
+    Parameters:
+        f  (function): The function that defines the ODE dy/dt = f(t, y).
+        t  (float): Current time.
+        y  (array-like): Current state vector.
+        dt (float): Step size.
+
+    Returns:
+        array-like: New state vector after one time step.
+    """
+
     # Implement the Runge-Kutta integration method
     k1 = np.array(f(t,y))
-    k2 = np.array(f(t+h/2,y+h/2*k1))
-    k3 = np.array(f(t+h/2,y+h/2*k2))
-    k4 = np.array(f(t+h,y+h*k3))
+    k2 = np.array(f(t+dt/2,y+dt/2*k1))
+    k3 = np.array(f(t+dt/2,y+dt/2*k2))
+    k4 = np.array(f(t+dt,y+dt*k3))
 
     # Return the results
-    return y + h/6 * (k1+2*k2+2*k3+k4)
+    return y + dt/6 * (k1+2*k2+2*k3+k4)
 
-def leap_frog(f, t, y, h):
+def leap_frog(f, t, y, y_prev, dt):
+    """
+    Leap-Frog integration method for solving first-order ODEs.
+
+    Parameters:
+        f      (function): The function that defines the ODE dy/dt = f(t, y).
+        t      (float): Current time.
+        y      (array-like): Current state vector.
+        y_prev (array-like): Previous state vector.
+        dt     (float): Step size.
+
+    Returns:
+        array-like: New state vector after one time step.
+    """
     # Implement the Leap-Frog integration method
-    ## Half-step update for positions
-    y[:2] += 0.5 * h * y[2:4] 
+    k = np.array(f(t, y))
 
-    ## Full-step update for momenta
-    k = np.array(f(t,y))
-    y[2:4] += h*k[2:4]
+    y_new = y_prev + 2*dt*k
 
-    ## Half-step update for positions
-    y[:2] += 0.5 * h * y[2:4]
 
-    # Return the results
-    return y
+    return y_new
 
-def euler(f, t, y, h):
+def euler(f, t, y, dt):
+    """
+    Euler integration method for solving first-order ODEs.
+
+    Parameters:
+        f  (function): The function that defines the ODE dy/dt = f(t, y).
+        t  (float): Current time.
+        y  (array-like): Current state vector.
+        dt (float): Step size.
+
+    Returns:
+        array-like: New state vector after one time step.
+    """
     # Implement the Euler integration method
     k = np.array(f(t,y))
-    y_next = y + h*k
+    y_next = y + dt*k
 
     # Return the results
     return y_next
