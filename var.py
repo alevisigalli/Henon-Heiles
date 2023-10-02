@@ -11,7 +11,11 @@ def equations_motion(t, y):
     Returns:
         numpy.ndarray: Array containing the derivatives [dX/dt, dY/dt, dpx/dt, dpy/dt].
     """
-    X, Y, px, py = y
+    X = y[0]
+    Y = y[1]
+    px = y[2]
+    py = y[3]
+    #X, Y, px, py = y
 
     # Define the differential equations
     dX_dt = px
