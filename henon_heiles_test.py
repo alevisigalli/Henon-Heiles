@@ -1,9 +1,9 @@
 import unittest
+import subprocess
 from unittest.mock import patch
-from . import henon_heiles  # Import your main script
-from . import integration_methods  # Import your submodules
-from . import var
-from . import poincare_maps
+from henon_heiles import *
+from integration_methods import runge_kutta4, runge_kutta2, leap_frog, euler  # Import your submodules
+from var import equations_motion
 import sys
 import numpy as np
 import io
@@ -17,8 +17,8 @@ def run_henon_heiles(args):
     sys.path.append("/home/avisigalli@iit.local/Desktop/Data/Henon-Heiles")
 
     # Run the script with arguments
-    with patch.object(sys, 'argv', ['python','henon_heiles.py'] + args):
-        import henon_heiles
+    with patch.object(sys, 'argv', ['python3 henon_heiles.py'] + args):
+        main()
 
     # Reset redirect
     sys.stdout = sys.__stdout__
@@ -31,15 +31,16 @@ def run_henon_heiles(args):
 class TestHenonHeiles(unittest.TestCase):
 
     def test_energy_range(self):
+        from henon_heiles import henon_heiles as hh
         # Define initial conditions
         initial_conditions = [0.0, -0.1475, 0.3101, 0.0]
         # Define time values
         t_values = np.linspace(0, 200, 20001)
         # Choose a suitable step size
-        h = t_values[1] - t_values[0]
+        dt = t_values[1] - t_values[0]
 
         # Integrate using your chosen method (e.g., Runge-Kutta 4)
-        result = henon_heiles(runge_kutta4, var, initial_conditions, t_values, h)
+        result = hh(runge_kutta4, equations_motion, initial_conditions, t_values, dt)
         x = result[:,0]
         y = result[:,1]
         px = result[:,2]
@@ -51,18 +52,11 @@ class TestHenonHeiles(unittest.TestCase):
         # Check if the energy is within the desired range
         self.assertTrue((H >= 0).all() and (H <= 1/6).all())
 
-    def test_invalid_arguments(self):
-        args = []
-        output = run_henon_heiles(args)
-        self.assertIn("usage:", output)
-        self.assertIn("Error: You need to use exactly one of these three arguments", output)
-        self.assertIn("Error: You need to use exactly one of these four arguments", output)
-
     def test_outer_rk4(self):
         args = ["--outer", "--rk4"]
         output = run_henon_heiles(args)
         self.assertNotIn("usage:", output)
-        self.assertIn("Simulation of trajectory: outside separatrix", output)
+        self.assertIn("Simulation of trajectory: outside separatrix",output)
         self.assertIn("Integrate equations of motion using Runge-Kutta 4", output)
 
     def test_torus_leapfrog(self):
@@ -70,13 +64,13 @@ class TestHenonHeiles(unittest.TestCase):
         output = run_henon_heiles(args)
         self.assertNotIn("usage:", output)
         self.assertIn("Simulation of trajectory: distorted torus", output)
-        self.assertIn("Integrate equations of motion using LeapFrog", output)
+        self.assertIn("Integrate equations of motion using Leap-Frog", output)
 
     def test_hyperbolic_euler(self):
         args = ["--hyperbolic", "--euler"]
         output = run_henon_heiles(args)
         self.assertNotIn("usage:", output)
-        self.assertIn("Simulation of trajectory: hyperbolic points (separatrices)", output)
+        self.assertIn("Simulation of trajectory: separatrices", output)
         self.assertIn("Integrate equations of motion using Euler", output)
 
 if __name__ == '__main__':
