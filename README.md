@@ -81,3 +81,9 @@ python henon_heiles.py --rk4 --torus
 python henon_heiles.py --leapfrog --hyperbolic
 ```
 ![png](Figures/Hyperbolic.png)
+
+### All the previous solutions
+```bash
+python henon_heiles.py --leapfrog --all
+```
+![png](Figures/all.png)
