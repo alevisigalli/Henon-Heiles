@@ -1,8 +1,7 @@
 import unittest
-import subprocess
 from unittest.mock import patch
 from henon_heiles import *
-from integration_methods import runge_kutta4, runge_kutta2, leap_frog, euler  # Import your submodules
+from integration_methods import runge_kutta4  # Import your submodules
 from var import equations_motion
 import sys
 import numpy as np
