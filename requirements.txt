@@ -1,5 +1,6 @@
-numpy==1.22.4
-matplotlib==3.6.3
+numpy
+matplotlib
+io
 sys
 argparse
 unittest
