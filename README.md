@@ -68,13 +68,16 @@ Here are some example scenarios and trajectories:
 ```bash
 python henon_heiles.py --rk2 --outer
 ```
+![png](Figures/Outer.png)
 
 ### Distorted Torus
 ```bash
 python henon_heiles.py --rk4 --torus
 ```
+![png](Figures/Torus.png)
 
 ### Hyperbolic Points (Separatrices)
 ```bash
 python henon_heiles.py --leapfrog --hyperbolic
 ```
+![png](Figures/Hyperbolic.png)
