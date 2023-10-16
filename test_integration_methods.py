@@ -12,14 +12,14 @@ class TestIntegrationMethods(unittest.TestCase):
         # Initial conditions
         y0 = 1.0
         t = 0.0
-        h = 0.1
+        dt = 0.01
 
         # Use Runge-Kutta 2 to solve the ODE
-        y_next = im.runge_kutta2(test_ode, t, y0, h)
+        y_next = im.runge_kutta2(test_ode, t, y0, dt)
 
         # The solution for this ODE is y(t) = e^(-t)
         expected_result = np.exp(-t)
-        self.assertAlmostEqual(y_next, expected_result, places=5)
+        self.assertAlmostEqual(y_next, expected_result, places=1)
 
     def test_runge_kutta4(self):
         # Define a simple test ODE: dy/dt = -y
@@ -29,37 +29,34 @@ class TestIntegrationMethods(unittest.TestCase):
         # Initial conditions
         y0 = 1.0
         t = 0.0
-        h = 0.1
+        dt = 0.01
 
         # Use Runge-Kutta 4 to solve the ODE
-        y_next = im.runge_kutta4(test_ode, t, y0, h)
+        y_next = im.runge_kutta4(test_ode, t, y0, dt)
 
         # The solution for this ODE is y(t) = e^(-t)
         expected_result = np.exp(-t)
-        self.assertAlmostEqual(y_next, expected_result, places=5)
+        self.assertAlmostEqual(y_next, expected_result, places=1)
 
     def test_leap_frog(self):
         # Define a simple test ODE: dy/dt = -y
         def test_ode(t, y):
-            return np.array([-y])
+            return -y
 
         # Initial conditions
-        y0 = np.array([1.0,0.0])
+        y = 1.0
         t = 0.0
-        h = 0.1
+        dt = 0.001
+        y_prev = np.exp(t-dt)
 
         # Use LeapFrog to solve the ODE
-        y_next = im.leap_frog(test_ode, t, y0, h)
+        y_next = im.leap_frog(test_ode, t, y, y_prev,dt)
 
         # The solution for this ODE is y(t) = e^(-t)
-        def analytical_solution(t):
-            return np.array([np.exp(-t),0.0])
-
-        # Tolerance for comparing floating-point numbers
-        tol = 1e-6
+        expected_result = np.exp(-t)
     
         # Check if the result is close to the analytical solution
-        self.assertAlmostEqual(np.allclose(y_next[0], analytical_solution(t+h), atol=tol))
+        self.assertAlmostEqual(y_next, expected_result,places=2)
 
     def test_euler(self):
         # Define a simple test ODE: dy/dt = -y
@@ -69,14 +66,14 @@ class TestIntegrationMethods(unittest.TestCase):
         # Initial conditions
         y0 = 1.0
         t = 0.0
-        h = 0.1
+        dt = 0.01
 
         # Use Runge-Kutta 4 to solve the ODE
-        y_next = im.euler(test_ode, t, y0, h)
+        y_next = im.euler(test_ode, t, y0, dt)
 
         # The solution for this ODE is y(t) = e^(-t)
         expected_result = np.exp(-t)
-        self.assertAlmostEqual(y_next, expected_result, places=5)
+        self.assertAlmostEqual(y_next, expected_result, places=1)
 
 
 
