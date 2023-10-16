@@ -45,7 +45,7 @@ def henon_heiles(integration_method,f, y0, t_values, dt):
     return y_values
 
 # Define time values
-t_values = np.linspace(0, 200, 20001) 
+t_values = np.linspace(0, 200, 200001) 
 
 # Choose a suitable step size
 dt = t_values[1] - t_values[0]
@@ -102,22 +102,21 @@ def main():
     if args.rk2:
         print("Integrate equations of motion using Runge-Kutta 2")
         result = henon_heiles(runge_kutta2,var,initial_conditions, t_values, dt)
-        pm.plot_henon_heiles(t_values,x=result[:,0], y=result[:,1], px=result[:,2],py=result[:,3],color=color,title=title)
 
     if args.rk4:
         print("Integrate equations of motion using Runge-Kutta 4")
         result = henon_heiles(runge_kutta4,var,initial_conditions, t_values, dt)
-        pm.plot_henon_heiles(t_values,x=result[:,0], y=result[:,1], px=result[:,2], py=result[:,3],color=color,title=title)
     
     if args.leapfrog:
         print("Integrate equations of motion using Leap-Frog")
         result = henon_heiles(leap_frog,var,initial_conditions, t_values, dt)
-        pm.plot_henon_heiles(t_values,x=result[:,0], y=result[:,1], px=result[:,2], py=result[:,3],color=color,title=title)
     
     if args.euler:
         print("Integrate equations of motion using Euler")
-        result = henon_heiles(euler,var,initial_conditions, t_values, dt)
-        pm.plot_henon_heiles(t_values,x=result[:,0], y=result[:,1], px=result[:,2], py=result[:,3],color=color,title=title)
+        result = henon_heiles(euler,var,initial_conditions, t_values,dt)  
+        print(result)
+    
+    pm.plot_henon_heiles(t_values,x=result[:,0], y=result[:,1], px=result[:,2], py=result[:,3],color=color,title=title)
 
 
 if __name__ == "__main__":
