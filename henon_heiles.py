@@ -45,7 +45,8 @@ def henon_heiles(integration_method,f, y0, t_values, dt):
     return y_values
 
 # Define time values
-t_values = np.linspace(0, 200, 20001)  # Adjust the time span and step size as needed
+t_values = np.linspace(0, 200, 20001) 
+
 # Choose a suitable step size
 dt = t_values[1] - t_values[0]
 
@@ -83,29 +84,38 @@ def main():
         initial_conditions = [0, 0, -0.0428, -0.3438]
         color = 'tab:blue'
         title='Outside separatrix'
+        print("Simulation of trajectory: outside separatrix")
+        
     if args.torus:
         initial_conditions = [0, -0.1475, 0.3101, 0]
         color = 'tab:orange'
         title = 'Distorted torus'
+        print("Simulation of trajectory: distorted torus")
+        
     if args.hyperbolic:
         initial_conditions = [0, 0.1563, 0.18876, -0.25]
         color = 'tab:green'
         title = 'Hyperbolic points: separatrices'
+        print("Simulation of trajectory: separatrices")
     
     # Choose the integration algorithm
     if args.rk2:
+        print("Integrate equations of motion using Runge-Kutta 2")
         result = henon_heiles(runge_kutta2,var,initial_conditions, t_values, dt)
         pm.plot_henon_heiles(t_values,x=result[:,0], y=result[:,1], px=result[:,2],py=result[:,3],color=color,title=title)
 
     if args.rk4:
+        print("Integrate equations of motion using Runge-Kutta 4")
         result = henon_heiles(runge_kutta4,var,initial_conditions, t_values, dt)
         pm.plot_henon_heiles(t_values,x=result[:,0], y=result[:,1], px=result[:,2], py=result[:,3],color=color,title=title)
     
     if args.leapfrog:
+        print("Integrate equations of motion using Leap-Frog")
         result = henon_heiles(leap_frog,var,initial_conditions, t_values, dt)
         pm.plot_henon_heiles(t_values,x=result[:,0], y=result[:,1], px=result[:,2], py=result[:,3],color=color,title=title)
     
     if args.euler:
+        print("Integrate equations of motion using Euler")
         result = henon_heiles(euler,var,initial_conditions, t_values, dt)
         pm.plot_henon_heiles(t_values,x=result[:,0], y=result[:,1], px=result[:,2], py=result[:,3],color=color,title=title)
 
