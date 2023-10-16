@@ -18,9 +18,9 @@ Alessia Visigalli, PhD student
 The Henon-Heiles system is a classical mechanical system that models the motion of a particle in a two-dimensional potential field. The equations of motion for this system are defined as follows:
 
 $$
-\frac{dx}{dt}=p \\
-\frac{dp}{dt}=-x-2xy \\
-\frac{dy}{dt}=q \\
+\frac{dx}{dt}=p  
+\frac{dp}{dt}=-x-2xy  
+\frac{dy}{dt}=q  
 \frac{dq}{dt}=-y-(x^2-y^2)
 $$
 
