@@ -71,26 +71,17 @@ def euler(f, t, y0, dt):
     Euler integration method for solving first-order ODEs.
 
     Parameters:
-        f        (function): The function that defines the ODE dy/dt = f(t, y).
-        t        (float): Current time.
-        y0       (array-like): Initial state vector.
-        dt       (float): Step size.
+        f  (function): The function that defines the ODE dy/dt = f(t, y).
+        t  (float): Current time.
+        y0 (array-like): Initial state vector.
+        dt (float): Step size.
 
     Returns:
         array-like: New state vector after one time step.
     """
-    # Create an array to store the results
-    #y = np.zeros((len(t) + 1, len(y0)))
-    #y[0] = y0  # Initial condition
-
     # Implement the Euler integration method
-    #for i in range(len(t)):
-    #    k = np.array(f(t, y[i]))
-    #    y[i + 1] = y[i] + dt * k
-    #    t += dt
-
-    k = np.array(f(t,y0))
-    y = y0 + dt*k
+    k = np.array(f(t, y0))
+    y = y0 + dt * k
 
     # Return the results
     return y
