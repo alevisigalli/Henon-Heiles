@@ -18,7 +18,7 @@ The Henon-Heiles system, also known as the Henon-Heiles Hamiltonian, is a simple
 
 The Henon-Heiles Hamiltonian describes the motion of a particle in a two-dimensional potential field, which can be expressed as follows:
 
-$H=\frac{1}{2}(p_x^2+p_y^2)+\frac{1}{2}(x^2+y^2)+x^2y-\frac{1}{3}y^3$
+$$H=\frac{1}{2}(p_x^2+p_y^2)+\frac{1}{2}(x^2+y^2)+x^2y-\frac{1}{3}y^3$$
 
 Where:
 
