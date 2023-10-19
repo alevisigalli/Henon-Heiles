@@ -14,8 +14,22 @@ This repository contains a Python script for simulating and analyzing trajectori
 Alessia Visigalli, PhD student
 
 ## Background
+The Henon-Heiles system, also known as the Henon-Heiles Hamiltonian, is a simple but important example of a dynamical system that exhibits chaotic behavior. It was introduced by Michel Henon and Carl Heiles in 1964 as a simplified model for certain astronomical systems, such as stars moving in a galaxy. The system is characterized by its conservative, Hamiltonian dynamics, meaning that the total energy is conserved.
 
-The Henon-Heiles system is a classical mechanical system that models the motion of a particle in a two-dimensional potential field. The equations of motion for this system are defined as follows:
+The Henon-Heiles Hamiltonian describes the motion of a particle in a two-dimensional potential field, which can be expressed as follows:
+
+$H=\frac{1}{2}(p_x^2+p_y^2)+\frac{1}{2}(x^2+y^2)+x^2y-\frac{1}{3}y^3$
+
+Where:
+
+- H is the Hamiltonian, which represents the total energy of the system.
+- x and y are the particle's coordinates in the x and y directions.
+- px and py are the corresponding momentum components.
+- The terms in the Hamiltonian represent kinetic energy $\frac{1}{2}(p_x^2+p_y^2)+\frac{1}{2}(x^2+y^2)$ and potential energy $x^2y-\frac{1}{3}y^3$
+
+The Henon-Heiles system is a classic example of a Hamiltonian system that has been extensively studied in the context of chaos theory and nonlinear dynamics. It serves as a model system for understanding the behavior of more complex physical systems with chaotic dynamics. Researchers use it to explore fundamental concepts in dynamical systems, such as phase space, stability, and bifurcations, as well as the transition from regular to chaotic motion.
+
+The equations of motion for this system are defined as follows:
 
 $$
 \begin{aligned}
