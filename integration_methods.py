@@ -1,5 +1,35 @@
 import numpy as np
 
+def henon_heiles(integration_method,f, y0, t_values, dt):
+    '''
+    The henon_heiles function is designed to perform numerical integration of a dynamical system using various integration methods. 
+    In particular, it can be used to simulate the Henon-Heiles system, a simple Hamiltonian system used in celestial mechanics and quantum mechanics. 
+    
+    Parameters:
+        integration_method (string): this parameters allow you to choose between four integration methods: euler, runge_kutta4, runge_kutta2, leap-frog.
+        f  (function): The function that defines the ODE dy/dt = f(t, y).
+        y0  (array): Initial conditions for the state vector (x, y, px and py).
+        t  (array): Simulation time.
+        dt (float): Step size.
+
+    Returns:
+        array: State vector after the whole simulation time.
+    
+    '''
+    num_steps = len(t_values)
+    y_values = np.zeros((num_steps, len(y0)))
+    y_values[0] = y0
+    
+    if integration_method == leap_frog:
+        y_values[1] = y_values[0] + dt*np.array(f(t_values[0], y_values[0]))
+        for i in range(2, num_steps):
+            y_values[i] = leap_frog(f, t_values[i-1], y_values[i-1], y_values[i-2], dt)
+    else:
+        for i in range(1, num_steps):
+            y_values[i] = integration_method(f, t_values[i-1], y_values[i-1], dt)
+    
+    return y_values
+
 def runge_kutta2(f, t, y, dt):
     """
     Runge-Kutta 2nd order integration method for solving first-order ODEs.
