@@ -43,7 +43,7 @@ def runge_kutta2(f, t, y, dt):
     Returns:
         array-like: New state vector after one time step.
     """
-
+    
     # Implement the Runge-Kutta integration method
     k1 = np.array(f(t,y))
     k2 = np.array(f(t+dt,y+dt*k1))
@@ -64,7 +64,7 @@ def runge_kutta4(f, t, y, dt):
     Returns:
         array-like: New state vector after one time step.
     """
-
+    
     # Implement the Runge-Kutta integration method
     k1 = np.array(f(t,y))
     k2 = np.array(f(t+dt/2,y+dt/2*k1))
@@ -92,7 +92,6 @@ def leap_frog(f, t, y, y_prev, dt):
     k = np.array(f(t, y))
 
     y_new = y_prev + 2*dt*k
-
 
     return y_new
 
