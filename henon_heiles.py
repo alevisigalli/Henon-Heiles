@@ -35,7 +35,6 @@ t_values = np.linspace(0, 200, 200001)
 
 # Choose a suitable step size
 dt = t_values[1] - t_values[0]
-print(dt)
 
 def main():
     parser = argparse.ArgumentParser(description="Henon-Heiles System Integration")
