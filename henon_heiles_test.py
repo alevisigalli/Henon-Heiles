@@ -192,6 +192,21 @@ class TestSymplecticity(unittest.TestCase):
         self.assertTrue((H >= 0).all() and (H <= 1/6).all())
         
     def test_leap_frog_symplecticity(self):
+        """
+        Test the symplecticity of the Leap-Frog integration method for the Henon-Heiles system.
+
+        This test checks whether the Leap-Frog integration method conserves the system's Hamiltonian energy over time.
+        
+        The Henon-Heiles system is a Hamiltonian system, and symplectic integration methods like Leap-Frog are expected to conserve the total energy of the system throughout the simulation. This test compares the initial energy to the final energy after integration and checks if they match within a specified tolerance.
+
+        Note:
+        The Hamiltonian energy of the Henon-Heiles system is a useful indicator of the integrator's symplecticity. A perfect symplectic integrator should yield nearly identical initial and final energy values.
+
+        The test is performed for the Henon-Heiles system with the chosen integration method and initial conditions defined in the `setUp` method.
+
+        Returns:
+        None
+        """
         # Calculate the initial energy of the system
         initial_energy = (self.y0[2]**2) / 2 + (self.y0[3]**2) / 2 + (self.y0[0]**2) / 2 + (self.y0[1]**2) / 2 + self.y0[0]**2 * self.y0[1] - (1/3) * self.y0[1]**3
 
