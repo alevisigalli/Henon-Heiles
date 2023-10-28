@@ -24,25 +24,11 @@ Examples:
 import argparse
 import sys
 import numpy as np
-from integration_methods import runge_kutta2, runge_kutta4, leap_frog, euler
-from var import equations_motion as var
-import poincare_maps as pm
 import matplotlib.pyplot as plt
 
-def henon_heiles(integration_method,f, y0, t_values, dt):
-    num_steps = len(t_values)
-    y_values = np.zeros((num_steps, len(y0)))
-    y_values[0] = y0
-    
-    if integration_method == leap_frog:
-        y_values[1] = y_values[0] + dt*np.array(f(t_values[0], y_values[0]))
-        for i in range(2, num_steps):
-            y_values[i] = leap_frog(f, t_values[i-1], y_values[i-1], y_values[i-2], dt)
-    else:
-        for i in range(1, num_steps):
-            y_values[i] = integration_method(f, t_values[i-1], y_values[i-1], dt)
-    
-    return y_values
+from integration_methods import henon_heiles, runge_kutta2, runge_kutta4, leap_frog, euler
+from var import equations_motion as var
+import poincare_maps as pm
 
 # Define time values
 t_values = np.linspace(0, 200, 200001) 
