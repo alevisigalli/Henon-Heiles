@@ -53,11 +53,11 @@ python henon_heiles.py --rk2 --outer
 ```
 This command will run the simulation using Runge-Kutta 2 integration method with initial conditions for the outside separatrix.
 
-##Intallation
+## Installation
 To get started, follow these steps:
 1) Clone this repository to your local machine:
    ```bash
-   git clone https://github.com/your-username/henon-heiles.git
+   git clone git@github.com:alevisigalli/Henon-Heiles.git
    cd henon-heiles
    ```
 2) Make sure you have Python and the required dependencies installed. You can install the dependencies using pip:
